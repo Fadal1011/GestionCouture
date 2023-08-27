@@ -1,0 +1,25 @@
+.table thead
+{
+  width: 100%;
+}
+
+
+.action{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  }
+
+  .flex{
+    display: flex;
+    gap: 1.4rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  #countdown{
+    width: 2rem;
+    height: 2rem;
+    border: solid 2px white;
+    border-radius: 50%;
+  }

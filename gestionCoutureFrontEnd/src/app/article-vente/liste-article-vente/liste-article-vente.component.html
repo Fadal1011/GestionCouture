@@ -1,0 +1,23 @@
+<table class="table table-bordered container article">
+  <thead>
+    <tr>
+      <td>libelle</td>
+      <td>quantite</td>
+      <td>Article Confection</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr class="app-item-article-vente" *ngFor="let articleVente of recupDonneeArticleVente | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }" [articleVente]="articleVente"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage"
+      [totalItems]="totalItems"
+      [recupDonneeArticleVente]="recupDonneeArticleVente"
+      >
+
+      </tr>
+  </tbody>
+
+  <pagination-controls (pageChange)="Pagination($event)" class="pagination"></pagination-controls>
+</table>

@@ -1,0 +1,42 @@
+<td>{{article.libelle}}</td>
+      <td>{{article.prix}}</td>
+      <td>{{article.stock}}</td>
+      <td>{{article.categorie}}</td>
+      <td class="action">
+        <button type="button" (click)="getID(article.id)" (click)="Confirm($event)"  class="btn btn-danger flex">
+          <div >Supprimer</div>
+          <div id="countdown" *ngIf="timeLeft!=0 && verifieId==article.id">{{timeLeft}}</div>
+        </button>
+        <button type="button" (click)="getIDupdate(article.id)" (click)="buttonUpdateActive()" class="btn btn-warning flex">Modifier</button>
+  </td>
+
+
+
+
+<!-- <div class="table">
+  <thead>
+    <tr>
+      <td>Aricle</td>
+      <td>Prix</td>
+      <td>Stock</td>
+      <td>Categorie</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let article of listeArticle | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }">
+      <td>{{article.libelle}}</td>
+      <td>{{article.prix}}</td>
+      <td>{{article.stock}}</td>
+      <td>{{article.categorie}}</td>
+      <td class="action">
+        <button type="button" (click)="getID(article.id)" (click)="Confirm($event)" [disabled]="verifieId!=article.id && verifieId !=0" class="btn btn-danger flex">
+          <div >Supprimer</div>
+          <div id="countdown" *ngIf="timeLeft!=0 && verifieId==article.id">{{timeLeft}}</div>
+        </button>
+        <button type="button" (click)="getIDupdate(article.id)" (click)="buttonUpdateActive()" class="btn btn-warning flex">Modifier</button>
+      </td>
+    </tr>
+
+  </tbody>
+</div> -->

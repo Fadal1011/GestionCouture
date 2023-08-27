@@ -1,0 +1,43 @@
+<div class="categories">
+  <h1>CATEGORIES</h1>
+  <div class="form-check form-switch">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Ajout</label>
+    <input class="form-check-input" type="checkbox" [(ngModel)]="formCheck" (input)="radioLibelle()">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Edit</label>
+  </div>
+ <form (ngSubmit)="add_update()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">libelle</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" name="libelle" aria-describedby="emailHelp" (input)="inputLibelle()" [(ngModel)]="newCategorie.libelle">
+    </div>
+    <button type="submit" [disabled]="isButtonDisabled" class="btn btn-primary">Ok</button>
+  </form>
+
+   <div class="containerList">
+    <h3>Liste des Categories</h3>
+    <button type="button" class="btn btn-danger" [disabled]="deleteCategegorie" (click)="DeleteCategory()">Supprimer</button>
+  </div>
+  <table class="table-bordered  tableCategorie">
+      <thead>
+        <tr>
+          <th scope="col">Libelle</th>
+          <th scope="col">
+            <input class="form-check-input" type="checkbox" [disabled]="!formCheck" [(ngModel)]="checkedAOne" id="flexCheckChecked" (input)="inputValue($event)">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categorie of categories | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }">
+          <td scope="col" class="categorieClick" (click)="getID(categorie.id)" (click)="getTextContent($event)" [textContent]="categorie.libelle">{{ categorie.libelle }}</td>
+          <td scope="col">
+            <input class="form-check-input" [disabled]="!formCheck" type="checkbox" [value]="categorie.id" id="flexCheckChecked" [checked]="checkedAll" (input)="inputValue2($event)">
+          </td>
+        </tr>
+
+        <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+      </tbody>
+  </table>
+</div>
+
+
+

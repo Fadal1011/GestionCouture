@@ -1,0 +1,12 @@
+<td>{{articleVente.libelle}}</td>
+<td>100</td>
+<td>
+  <span *ngFor="let articleConf of articleVente.AricleConf">{{articleConf.libelle}} - {{articleConf.pivot.quantite}} ; </span>
+</td>
+<td class="action">
+  <button type="button" class="btn btn-danger flex">
+    <div>Supprimer</div>
+    <!-- <div id="countdown">timeLeft</div> -->
+  </button>
+  <button type="button" class="btn btn-warning flex">Modifier</button>
+</td>

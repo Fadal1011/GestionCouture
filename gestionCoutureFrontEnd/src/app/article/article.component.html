@@ -1,0 +1,37 @@
+
+<app-form [list]="list"
+[tabFournisseur]="tabFournisseur"
+(addArticl)="AppeladdArticle($event)"
+(updateArticl)="AppeladdArticle($event)"
+[recupDonnee]="recupDonneeArticle"
+[isLoading]="isLoading"
+[profilePicSrc]="profilSrc"
+[ModeUpdate2]="modeUpdate2"
+></app-form>
+
+<app-liste-article
+[listeArticle]="listArticle"
+(pagination)="onPageChange($event)"
+[currentPage]="currentPage"
+[itemsPerPage]="itemsPerPage"
+[totalItems]="totalItems"
+(recupId)="AppelDelete($event)"
+(ArticleObject)="AppelRecupArticle($event)"
+(UpdateActive)="buttonUpdateActive($event)"
+></app-liste-article>
+
+
+
+
+<!--
+<app-liste-article
+[listeArticle]="listArticle"
+(pagination)="onPageChange($event)"
+[currentPage]="currentPage"
+[itemsPerPage]="itemsPerPage"
+[totalItems]="totalItems"
+(recupId)="AppelDelete($event)"
+(ArticleObject)="AppelRecupArticle($event)"
+(UpdateActive)="buttonUpdateActive($event)"
+></app-liste-article> -->
+

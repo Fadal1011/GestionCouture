@@ -1,0 +1,137 @@
+<form [formGroup]="articleFormGroup" (ngSubmit)="Ajout_ou_Modifier()">
+  <button type="button" *ngIf="ModeUpdate2" class="btn-close" aria-label="Close" (click)="AnnulerModification()"></button>
+  <div class="flexBox">
+    <div class="flex formText">
+      <div class="mb-3">
+        <label for="libelle" class="form-label">Libelle</label>
+        <input
+          type="text"
+          class="form-control"
+          id="libelle"
+          (change)="chargerRef()"
+          formControlName="libelle"
+          [value]="recupDonnee?.libelle"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="prix" class="form-label">Prix</label>
+        <input type="number" class="form-control" formControlName="prix" [value]="recupDonnee?.prix" id="prix"/>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="stock">stock</label>
+        <input type="number" class="form-control" [value]="recupDonnee?.stock" formControlName="stock" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="categorie">Categorie</label>
+        <select class="form-select" formControlName="categorie" [value]="recupDonnee?.categorie" aria-label="Default select example" (change)="chargerRef()">
+          <option *ngFor="let categorie of list"  [value]="categorie.libelle">{{categorie.libelle}}</option>
+
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="fournisseur">fournisseur</label>
+        <div class="fournisseurChoisi" *ngFor="let fselect of fournisseurSelectionner" (click)="DeSelectionnerFournisseur($event)">
+            <p>{{ fselect }}</p>
+        </div>
+        <input type="text" class="form-control" formControlName="fournisseur" id="fournisseur" (input)="searchFournisseur()" [readOnly]="modeUpdateFormat"/>
+        <div *ngIf="articleFormGroup.value.fournisseur !==''">
+          <div class="selectFournisseur">
+            <p class="fournisseurClick" *ngFor="let fournisseur of FilterFournisseur" (click)="SelectionnerFournisseur($event)">{{fournisseur}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="upload">
+        <img [src]="profilePicSrc" width = 100 height = 100 alt="">
+        <div class="round">
+          <input type="file" accept="images/" formControlName="photo" (change)="onFileChange($event)">
+          <i class = "fa fa-camera" style = "color: #fff;"></i>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="stock">Ref</label>
+        <input type="text" class="form-control" formControlName="ref" readonly/>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="recupTextContent($event)">{{ModeUpdate2 ? 'Modifier' : 'Ajouter'}}</button>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="isLoading" class="loader">
+  <form>
+    <div class="flexBox">
+      <div class="flex formText">
+        <div class="mb-3">
+          <label for="libelle" class="form-label load">Libelle</label>
+          <input
+            type="text"
+            class="form-control load"
+            id="libelle"
+            name="libelle"
+            aria-describedby="emailHelp"
+            readonly
+          />
+        </div>
+        <div class="mb-3">
+          <label for="prix" class="form-label load">Prix</label>
+          <input type="number" class="form-control load" readonly id="prix"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label load" for="stock">stock</label>
+          <input type="number" class="form-control load" readonly/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label load" for="categorie">Categorie</label>
+          <select class="form-select load" aria-label="Default select example" readonly>
+            <!-- <option *ngFor="let categorie of list"  [value]="categorie.libelle">{{categorie.libelle}}</option>
+             -->
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label load" for="stock">fournisseur</label>
+          <input type="text" class="form-control load" readonly/>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div class="upload load">
+          <img [src]="" width = 100 height = 100 alt="">
+          <div class="round">
+            <!-- <input type="file" readonly> -->
+            <i class = "fa fa-camera load" style = "color: #fff;"></i>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label load" for="stock">Ref</label>
+          <input type="text" class="form-control load" readonly/>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary load" disabled></button>
+  </form>
+</div>

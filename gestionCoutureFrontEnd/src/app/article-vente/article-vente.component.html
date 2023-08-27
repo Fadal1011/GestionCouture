@@ -1,0 +1,99 @@
+<form class="formulaire" [formGroup]="insertUpdate" (ngSubmit)="insert()">
+  <div class="flex_container">
+   <div class="flex">
+     <div>
+       <label for="libelle" class="form-label">Libelle</label>
+       <input type="text" class="form-control input_with" formControlName="libelle" id="libelle" aria-describedby="libelle" (change)="chargerRef()">
+       <!-- <div id="libelle" class="form-text">We'll never share your email with anyone else.</div> -->
+     </div>
+
+     <div>
+       <label for="categorie" class="form-label">categorie</label>
+       <select class="form-select input_with" formControlName="categorie" aria-label="categorie" (change)="chargerRef()">
+         <option selected>Open this select menu</option>
+         <option *ngFor="let categorie of tableauCategorie" value="{{categorie.libelle}}">{{categorie.libelle}}</option>
+         <!-- <option value="2">Two</option>
+         <option value="3">Three</option> -->
+       </select>
+     </div>
+   </div>
+
+   <div class="flex promoValue">
+     <div class="mb-3 form-check">
+       <label class="form-check-label" for="exampleCheck1">Promo</label>
+       <input type="checkbox" [checked]="promo" (input)="isPromo($event)" class="form-check-input" id="exampleCheck1">
+     </div>
+     <div class="promo" *ngIf="promo" >
+       <label for="libelle" class="form-label">Value</label>
+       <input type="text" formControlName="valuePromo" class="form-control value promo" id="libelle" aria-describedby="libelle">
+
+     </div>
+   </div>
+
+  <div class="formControleInput">
+    <button type="button" class="btn btn-primary" (click)="addColumncontrol()">Ajouter</button>
+    <table class="table table-bordered addLibelle">
+      <thead>
+        <tr>
+          <td>Libelle</td>
+          <td>Quantité</td>
+          <!-- <td>Action</td> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let articleCtrl of articleConf; let i = index" [formGroup]="articleCtrl">
+          <td><input id="{{i}}" type="text" class="form-control" formControlName="libelle" (input)="searchArticle($event);activeInputIndex"></td>
+          <td><input id="{{i}}" type="number" class="form-control" formControlName="quantite" (change)="recupQuantite($event)"></td>
+          <!-- <td><button type="button" class="btn btn-danger" (click)="removeColumncontrol(i)">Supprimer</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+   <div class="calcul">
+     <div class="inputNumber">
+       <label for="marge" class="form-label">Marge</label>
+       <input type="number" class="form-control numberPrix" (input)="recupMerge($event)" formControlName="marge" id="marge" aria-describedby="marge">
+     </div>
+     <div class="inputNumber">
+       <label for="cout_fabrication" class="form-label">Cout fabrication</label>
+       <input type="number" class="form-control numberPrix" formControlName="cout_fabrication" id="cout_fabrication" readonly aria-describedby="cout_fabrication">
+     </div>
+     <div class="inputNumber">
+       <label for="prix_vente" class="form-label">Prix vente</label>
+       <input type="number" class="form-control  numberPrix" formControlName="prix_vente" id="prix_vente" readonly aria-describedby="prix_vente">
+     </div>
+   </div>
+  </div>
+
+  <div class="flex_container">
+   <div class="upload">
+     <img [src]="profilPicsrc" width= 100 height = 100 alt="">
+     <div class="round">
+       <input type="file" accept="images/" formControlName="photo" (change)="onFileChange($event)">
+       <i class = "fa fa-camera" style = "color: #fff;"></i>
+     </div>
+   </div>
+
+   <div class="mb-3 refclass">
+     <label class="form-label" for="stock">Ref</label>
+     <input type="text" class="form-control refclass" formControlName="ref" readonly/>
+   </div>
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+
+  <div class="champsSelection">
+    <p (click)="recupLibelle($event)" *ngFor="let selection of FilterArticle">{{selection.libelle}}</p>
+  </div>
+
+ </form>
+
+ <app-liste-article-vente
+ [recupDonneeArticleVente]="recupDonneeArticleVente"
+ (pagination)="onPageChange($event)"
+[currentPage]="currentPage"
+[itemsPerPage]="itemsPerPage"
+[totalItems]="totalItems"
+ ></app-liste-article-vente>
+

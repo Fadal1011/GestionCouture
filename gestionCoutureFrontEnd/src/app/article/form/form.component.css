@@ -1,0 +1,99 @@
+
+
+
+form{
+  border: solid 1px black;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 50%;
+}
+
+.flexBox{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flexBox .formText{
+  width: 60%;
+}
+
+
+.upload{
+  width: 150px;
+  position: relative;
+  margin: 3rem auto;
+  cursor: pointer;
+}
+
+.upload img{
+  width: 150px;
+  height: 150px;
+  /* border-radius: 50%; */
+  border: 6px solid #eaeaea;
+  cursor: pointer;
+}
+
+.upload .round{
+  position: absolute;
+  top: 0;
+  background: #00b3ff00;
+  width: 150px;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.upload .round input[type = "file"]{
+  opacity: 0;
+  width: 150px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.selectFournisseur{
+  max-width: 40%;
+  background: rgb(61, 173, 177);
+  color: white;
+  display: flex;
+  margin: .3rem 0;
+
+}
+
+.fournisseurClick{
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: .3rem .4rem;
+}
+
+.fournisseurChoisi{
+  display: flex;
+}
+
+.fournisseurChoisi p{
+  margin:0 1rem ;
+}
+
+
+.loader
+{
+  width: 100%;
+  height:100vh;
+  position: fixed;
+  z-index: 99999999999999999999999999999999;
+  top: 0%;
+  /* left: 50%; */
+  background: rgb(255, 255, 255);
+  /* text-align: center; */
+}
+
+/* .loader img
+{
+
+} */
+
+.load
+{
+  color: rgb(206, 205, 205);
+  background: rgb(206, 205, 205);
+  border: none;
+}

@@ -1,0 +1,100 @@
+
+.formulaire{
+  width: 80rem;
+  margin: 0 auto;
+  background: rgb(212, 212, 212);
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex_container{
+  width: 30rem;
+}
+
+.flex
+{
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.input_with
+{
+  width:20rem;
+
+}
+
+
+.formControleInput
+{
+  /* width: 40rem; */
+}
+
+.addLibelle{
+  margin: 1rem 0;
+  width: 40rem;
+}
+
+.numberPrix{
+  width: 10rem;
+}
+
+.promo{
+  display: flex;
+}
+
+.promoValue{
+  margin-top: 2rem;
+}
+
+.refclass{
+  width: 20rem;
+  margin: auto;
+}
+
+
+
+.upload{
+  width: 150px;
+  position: relative;
+  margin: 3rem auto;
+  cursor: pointer;
+}
+
+.upload img{
+  width: 150px;
+  height: 150px;
+  /* border-radius: 50%; */
+  border: 6px solid #eaeaea;
+  cursor: pointer;
+}
+
+.upload .round{
+  position: absolute;
+  top: 0;
+  background: #00b3ff00;
+  width: 150px;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.upload .round input[type = "file"]{
+  opacity: 0;
+  width: 150px;
+  height: 100%;
+  cursor: pointer;
+}
+
+
+  .champsSelection
+{
+  width: 10rem;
+  position: absolute;
+  background: rgb(212, 212, 212);
+  left: 10%;
+  text-align: center;
+  font-size: 1.6rem;
+}

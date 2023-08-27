@@ -1,0 +1,31 @@
+
+<table class="table table-bordered container article">
+  <thead>
+    <tr>
+      <td>Aricle</td>
+      <td>Prix</td>
+      <td>Stock</td>
+      <td>Categorie</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr class="app-items" *ngFor="let article of listeArticle | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }" [article]="article"
+      [listeArticle]="listeArticle"
+      [currentPage]="currentPage"
+      [itemsPerPage]="itemsPerPage"
+      [totalItems]="totalItems"
+      [verifieId]="verifieId"
+      (recupIdArticle)="getID($event)"
+      (ArticleObject)="getIDupdate($event)"
+      (buttonText)="buttonUpdateActive($event)"
+      (textConfirmationChange)="onTextConfirmationChange($event)"
+      >
+
+
+      </tr>
+  </tbody>
+
+  <pagination-controls (pageChange)="Pagination($event)" class="pagination"></pagination-controls>
+</table>
