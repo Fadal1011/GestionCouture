@@ -21,6 +21,7 @@ import { ItemArticleVenteComponent } from './article-vente/liste-article-vente/i
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

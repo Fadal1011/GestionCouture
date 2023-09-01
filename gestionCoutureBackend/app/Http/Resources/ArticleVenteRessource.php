@@ -29,7 +29,7 @@ class ArticleVenteRessource extends JsonResource
                 'stock'=>$this->stock,
                 'categorie'=>$this->categorie->libelle,
                 'photo'=>$this->photo,
-                'ref'=>$this->ref,
+                'Ref'=>$this->Ref,
                 'valuePromo'=>$this->valuePromo,
                 'coutFabrication'=>$this->coutFabrication,
                 'marge'=>$this->marge,

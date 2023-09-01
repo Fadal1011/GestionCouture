@@ -1,0 +1,13 @@
+.article{
+  width: 75rem;
+}
+
+.menuList{
+  width: 75rem;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+}
+.perPage{
+  width: 15rem;
+}

@@ -34,7 +34,7 @@ class ArticleVenteCollection extends ResourceCollection
                     'stock'=>$article->stock,
                     'categorie'=>$article->categorie->libelle,
                     'photo'=>$article->photo,
-                    'ref'=>$article->ref,
+                    'Ref'=>$article->Ref,
                     'valuePromo'=>$article->valuePromo,
                     'coutFabrication'=>$article->coutFabrication,
                     'marge'=>$article->marge,

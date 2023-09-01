@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('article_ventes', function (Blueprint $table) {
             $table->id();
             $table->string('libelle')->unique();
-            // $table->boolean('promo')->default(false);
+            $table->boolean('promo')->default(false);
             $table->integer('valuePromo')->nullable()->default(null);
             $table->integer('prix');
             $table->string('stock');

@@ -4,9 +4,9 @@
   <span *ngFor="let articleConf of articleVente.AricleConf">{{articleConf.libelle}} - {{articleConf.pivot.quantite}} ; </span>
 </td>
 <td class="action">
-  <button type="button" class="btn btn-danger flex">
+  <button type="button" class="btn btn-danger flex" (click)="recupIdsuppression(articleVente.id)">
     <div>Supprimer</div>
     <!-- <div id="countdown">timeLeft</div> -->
   </button>
-  <button type="button" class="btn btn-warning flex">Modifier</button>
+  <button type="button" class="btn btn-warning flex" (click)="recupIdModification(articleVente)">Modifier</button>
 </td>

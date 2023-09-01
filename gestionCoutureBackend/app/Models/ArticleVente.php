@@ -25,22 +25,34 @@ class ArticleVente extends Model
         static::created(function (ArticleVente $articleVente) {
             $tabArticleConf = request()->input('articleConf');
             $articlesWithQuantities = [];
-            if($tabArticleConf !==null){
+
+            if ($tabArticleConf !== null) {
                 foreach ($tabArticleConf as $articleData) {
-                    $libelle = $articleData['libelle'];
+                    $id = $articleData['id']; // Utilisation directe de l'ID
                     $quantite = $articleData['quantite'];
-
-                    $article = Article::where('libelle', $libelle)->first();
-
-                    if ($article) {
-                        $articlesWithQuantities[$article->id] = ['quantite' => $quantite];
-                    }
+                    $articlesWithQuantities[$id] = ['quantite' => $quantite];
                 }
             }
 
-
-
             $articleVente->articles()->attach($articlesWithQuantities);
         });
+
+        // static::updated(function (ArticleVente $articleVente){
+        //     $tabArticleConf = request()->input('articleConf');
+        //     $articlesWithQuantities = [];
+        //     if($tabArticleConf !==null){
+        //         foreach ($tabArticleConf as $articleData) {
+        //             $libelle = $articleData['libelle'];
+        //             $quantite = $articleData['quantite'];
+
+        //             $article = Article::where('libelle', $libelle)->first();
+
+        //             if ($article) {
+        //                 $articlesWithQuantities[$article->id] = ['quantite' => $quantite];
+        //             }
+        //         }
+        //     }
+        //     $articleVente->articles()->sync($articlesWithQuantities);
+        // });
     }
 }

@@ -1,3 +1,19 @@
+<div class="menuList">
+  <select class="form-select perPage" aria-label="Default select example" (change)="recupPerpage($event)">
+    <option value="3" selected>3</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+  </select>
+
+  <select class="form-select perPage" aria-label="Default select example" (change)="trierArticleEmit($event)">
+    <option value="croissant" selected>Croissant</option>
+    <option value="Decroissant">Decroissant</option>
+  </select>
+
+</div>
+
+
 <table class="table table-bordered container article">
   <thead>
     <tr>
@@ -8,14 +24,14 @@
     </tr>
   </thead>
   <tbody>
-
       <tr class="app-item-article-vente" *ngFor="let articleVente of recupDonneeArticleVente | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }" [articleVente]="articleVente"
       [itemsPerPage]="itemsPerPage"
       [currentPage]="currentPage"
       [totalItems]="totalItems"
       [recupDonneeArticleVente]="recupDonneeArticleVente"
+      (idArticleVenteSuppresion)="recupIdArticleVente($event)"
+      (idArticleVenteModification)="recupIdArticleVenteModification($event)"
       >
-
       </tr>
   </tbody>
 

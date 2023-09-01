@@ -28,7 +28,7 @@ class StoreArticleVenteRequest extends FormRequest
             "categorie"=>"required",
             "photo"=>"required",
             // "AricleConf"=>"required",
-            "ref"=>"required",
+            "Ref"=>"required",
             "marge"=>"required",
         ];
     }

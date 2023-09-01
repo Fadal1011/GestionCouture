@@ -17,9 +17,9 @@ class ArticleVenteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($nbrePage=3)
     {
-        $article = ArticleVente::paginate(3);
+        $article = ArticleVente::paginate($nbrePage);
         return new ArticleVenteCollection($article);
     }
 
@@ -30,11 +30,24 @@ class ArticleVenteController extends Controller
      */
     public function RecupDonnéeForm()
     {
-        $categorie = Categorie::where("type","Vente")->get();
+        $categorie = Categorie::where("type", "Vente")->get();
         $articleConf = Article::all();
+
+        $formattedArticleConf = $articleConf->map(function ($article) {
+            return [
+                'id' => $article->id,
+                'libelle' => $article->libelle,
+                'prix' => $article->prix,
+                'stock' => $article->stock,
+                'categorie' => $article->categorie->libelle, // Utilisation du libellé de la catégorie
+                'Ref' => $article->Ref,
+                'ArticleConf' => $article->articles,
+            ];
+        });
+
         $combinedData = [
             'categories' => $categorie,
-            'articleConf'=>$articleConf,
+            'articleConf' => $formattedArticleConf,
         ];
 
         return $combinedData;
@@ -48,24 +61,7 @@ class ArticleVenteController extends Controller
      */
     public function store(StoreArticleVenteRequest $request)
     {
-        // $format = explode(";", $request->photo)[0];
-        // if($format ==="data:image/png"){
-        //     $image = str_replace('data:image/png;base64,','',$request->photo);
-        // }
-        // if($format ==="data:image/jpg"){
-        //     $image = str_replace('data:image/jpg;base64,','',$request->photo);
-        // }
-
-        // if($format ==="data:image/jpeg"){
-        //     $image = str_replace('data:image/jpeg;base64,','',$request->photo);
-        // }
-
         $categorie = Categorie::where('libelle', $request->categorie)->first();
-        // $lib = substr($request->libelle, 0, 3);
-        // $ref = "ref-" . $lib . $categorie->id . "3";
-
-        // dd($request->libelle);
-
         $articleVente = ArticleVente::create([
             "libelle" => $request->libelle,
             "prix" => 100,
@@ -75,7 +71,7 @@ class ArticleVenteController extends Controller
             "coutFabrication" => $request->coutFabrication,
             "photo" => $request->photo,
             "marge"=>$request->marge,
-            "Ref" => $request->ref,
+            "Ref" => $request->Ref,
 
         ]);
         return new ArticleVenteRessource($articleVente);
@@ -110,9 +106,36 @@ class ArticleVenteController extends Controller
      * @param  \App\Models\ArticleVente  $articleVente
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateArticleVenteRequest $request, ArticleVente $articleVente)
+    public function update(UpdateArticleVenteRequest $request, $id)
     {
-        //
+        $articleVente=ArticleVente::find($id);
+        $categorie = Categorie::where('libelle', $request->categorie)->first();
+        $articleVente->update([
+            "libelle" => $request->libelle,
+            "prix" => 100,
+            "stock" => 10,
+            "valuePromo"=>$request->valuePromo,
+            "categorie_id" => $categorie->id,
+            "coutFabrication" => $request->coutFabrication,
+            "photo" => $request->photo,
+            "marge"=>$request->marge,
+            "Ref" => $request->Ref,
+
+        ]);
+
+        $tabArticleConf = request()->input('articleConf');
+        $articlesWithQuantities = [];
+
+        if ($tabArticleConf !== null) {
+            foreach ($tabArticleConf as $articleData) {
+                $id = $articleData['id'];
+                $quantite = $articleData['quantite'];
+                $articlesWithQuantities[$id] = ['quantite' => $quantite];
+            }
+        }
+
+        $articleVente->articles()->sync($articlesWithQuantities);
+        return new ArticleVenteRessource($articleVente);
     }
 
     /**
@@ -121,8 +144,10 @@ class ArticleVenteController extends Controller
      * @param  \App\Models\ArticleVente  $articleVente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticleVente $articleVente)
+    public function destroy($id)
     {
-        //
+        $articleVente = ArticleVente::find($id);
+        $articleVente->delete();
+        return new ArticleVenteRessource($articleVente,'article supprimer avec success');
     }
 }

@@ -32,9 +32,9 @@ export abstract class ApiAbstractService<T> {
   );
  }
 
-//  getArticleVente(page?:number):Observable<ResponseBack>{
-//   return this.http.get<ResponseBack>(`${this.localhost}/articleVente?page=${page}`);
-// }
+ delete(id:number):Observable<T>{
+  return this.__http.delete<T>(environment.localhost+`${this.uri()}/${id}`)
+}
 
 
 

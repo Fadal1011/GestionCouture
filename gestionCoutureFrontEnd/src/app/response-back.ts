@@ -12,7 +12,7 @@ export interface ResponseBack {
 
 export interface ResponseBack2 {
   message:string,
-  data:{},
+  data:ArticleVente,
   links?:{},
   meta?:data
 }
@@ -33,7 +33,7 @@ export interface Article extends InterfaceAbstraitDonne{
   categorie:string;
   photo:string;
   fournisseurs:string[];
-  ref:string;
+  Ref:string;
 }
 
 export interface ArticleVente extends InterfaceAbstraitDonne{
@@ -46,11 +46,7 @@ export interface ArticleVente extends InterfaceAbstraitDonne{
   AricleConf:any[];
   valuePromo:number;
   coutFabrication:number
-
 }
-
-
-
 
 export interface RecupDonnee{
     categories:ResponseBack,

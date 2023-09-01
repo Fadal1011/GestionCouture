@@ -54,6 +54,9 @@ Route::get('/article',[ArticleController::class,'ArticlePaginate']);
 
 
 Route::post('/articleVente',[ArticleVenteController::class,'store']);
-Route::get('/articleVente',[ArticleVenteController::class,'index']);
+Route::get('/articleVente/{nbrePage?}',[ArticleVenteController::class,'index']);
+Route::put('/articleVente/{id}',[ArticleVenteController::class,'update']);
+Route::delete('/articleVente/{id}',[ArticleVenteController::class,'destroy']);
 
 Route::get('/aricle_categorie',[ArticleVenteController::class,'RecupDonnéeForm']);
+
